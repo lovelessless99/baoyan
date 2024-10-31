@@ -1,0 +1,2 @@
+import './polyfills.server.mjs';
+import{W as r,g as c}from"./chunk-ZI3E4MPX.mjs";var n=class e{constructor(){}selectedMenuSubject=new c("");selectedMenu$=this.selectedMenuSubject.asObservable();setSelectedMenu(t){this.selectedMenuSubject.next(t)}getSelectedMenu(){return this.selectedMenuSubject.getValue()}static \u0275fac=function(s){return new(s||e)};static \u0275prov=r({token:e,factory:e.\u0275fac,providedIn:"root"})};export{n as a};
