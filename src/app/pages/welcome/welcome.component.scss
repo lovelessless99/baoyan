@@ -1,0 +1,27 @@
+.sider-menu {
+    height: 100%;
+    border-right: 0;
+}
+
+.app-layout {
+    display: flex;
+    flex-direction: row-reverse; /* 將順序反轉，讓側邊欄在右邊 */
+}
+
+.right-sider {
+    background-color: #fff;
+    margin-left: 20px;
+}
+
+
+.inner-layout {
+    padding: 0 24px 24px;
+}
+
+
+nz-content {
+    background: #fff;
+    overflow: auto;
+    padding: 30px;
+    // min-height: 280px;
+}
