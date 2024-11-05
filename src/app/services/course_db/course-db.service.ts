@@ -13,7 +13,8 @@ export class CourseDbService {
     private firebaseDataSubject = new BehaviorSubject<any>(null); // 初始化 BehaviorSubject
     public firebaseData$: Observable<any> = this.firebaseDataSubject.asObservable();
     
-    private dataPath: string = "-OATAINcM2gAJQwfV2Df";
+    // private dataPath: string = "-OATAINcM2gAJQwfV2Df";
+    private dataPath: string = "global/-OAwJZ7NLxFuwHq1J7ox";
 
     getLimitedData(): Observable<any> {
         if (!this.course_db) {
