@@ -46,7 +46,7 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
     videoDuration: number = 0; // 視頻總時長
     currentTime: number = 0; // 當前播放時間
     isBrowser: boolean = true;
-
+    video_title: string = "";
     @Input() video_id: string = 'wPGuGXTs75I';
     isCollapsed = true;
 
@@ -63,6 +63,7 @@ export class WelcomeComponent implements OnInit, AfterViewInit {
             this.param = params.get('param') || '';
             this.videoList = this.webdataService.course_list;
             this.video_id = this.videoList[0].video_id;
+            this.video_title = this.videoList[0].title;
         });
     }
     @ViewChild(YouTubePlayer) player!: YouTubePlayer;

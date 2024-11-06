@@ -6,6 +6,7 @@ import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { WebdataService } from './services/web_data/webdata.service';
 import { SharedService } from './services/shared/shared.service';
+import { SidebarService } from './services/sidebar/sidebar.service';
 import { Router } from '@angular/router';
 
 
@@ -23,11 +24,15 @@ import { Router } from '@angular/router';
 export class AppComponent implements OnInit {
     isCollapsed = false;
     selectedMenu: string = "";
+    sidebarItems$: any;
+
     constructor(private router: Router,
         private webdataService: WebdataService,
-        private sharedService: SharedService) {
-
-    }
+        private sharedService: SharedService,
+        private sidebarService: SidebarService
+    ) {
+        this.sidebarItems$ = this.sidebarService.sidebarItems$;
+    }   
 
     ngOnInit(): void {
         this.sharedService.selectedMenu$.subscribe(menu => {
@@ -43,6 +48,9 @@ export class AppComponent implements OnInit {
         this.router.navigate(['/roadmap']);
     }
 
+    removeSidebarItem(name: string): void {
+        this.sidebarService.removeItem(name);
+    }
 
 
     onMenuItemClick(value: string) {

@@ -18,13 +18,21 @@ import { NgArrayPipesModule } from 'ngx-pipes';
 
 import { Router } from '@angular/router';
 
+
+
+import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
+import { NzIconModule } from 'ng-zorro-antd/icon';
+
+// service
 import { WebdataService } from '../../services/web_data/webdata.service';
 import { SharedService } from '../../services/shared/shared.service';
 import { CourseDbService } from './../../services/course_db/course-db.service';
+import { SidebarService } from './../../services/sidebar/sidebar.service';
+
 @Component({
     selector: 'app-roadmap',
     standalone: true,
-    imports: [NzLayoutModule, NzCardModule, FormsModule, CommonModule, NzGridModule, NzInputModule, NgArrayPipesModule],
+    imports: [NzLayoutModule, NzCardModule, FormsModule, CommonModule, NzGridModule, NzInputModule, NgArrayPipesModule, NzSkeletonModule, NzIconModule],
     templateUrl: './roadmap.component.html',
     styleUrl: './roadmap.component.scss'
 })
@@ -34,11 +42,15 @@ export class RoadmapComponent implements OnInit {
     cards_items: Array<{ "image_url": any; "title": any; "content": string}> = [];
     isLoading = true;
 
+    // skeleton
+    loadingArray = Array(12).fill(0);
+
     private data: any;
     constructor(private router: Router,
                 private webdataService: WebdataService,
                 private sharedService: SharedService,
                 private courseDbService: CourseDbService,
+                private sidebarService: SidebarService,
     ) {
        
     }
@@ -67,6 +79,7 @@ export class RoadmapComponent implements OnInit {
 
                 console.log("item is", this.cards_items);
                 this.isLoading = false;
+                console.log("loading done:", !this.isLoading);
             }
         )
     }
@@ -82,6 +95,7 @@ export class RoadmapComponent implements OnInit {
     goToAbout(course_name: string) {
         this.sharedService.setSelectedMenu(course_name);
         this.webdataService.name = course_name;
+        this.sidebarService.addItem(course_name);  // add to sidebar
         this.router.navigate(['/welcome', course_name]);  // 導航到 /about 路徑
     }
 

@@ -15,7 +15,7 @@
     </nz-sider>
 
     <nz-content>
-        <p>大乘起信論第一集-上</p>
+        <h2>{{video_title}}</h2>
         <youtube-player [videoId]="video_id" placeholderImageQuality="high"
             [playerVars]="{ autoplay: 0, controls: 0 }" />
         <button nz-button nzType="default" (click)="playVideo()">Play</button>

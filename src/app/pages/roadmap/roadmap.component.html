@@ -3,6 +3,17 @@
 <br>
 <br>
 
+
+<!-- when loading  -->
+<div  nz-row [nzGutter]="30" *ngIf="isLoading">
+    <div *ngFor="let _ of loadingArray" nz-col  [nzXs]="24" [nzSm]="12" [nzMd]="6" [nzLg]="6" [nzXl]="6" style="margin-bottom: 30px;">
+        <nz-card nzHoverable style="width:240px">
+            <nz-skeleton [nzTitle]="true" [nzParagraph]="{ rows: 3 }"></nz-skeleton>
+        </nz-card>
+    </div>
+</div>
+
+<!-- after loading  -->
 <div nz-row [nzGutter]="30" *ngIf="!isLoading">
     <div (click)="goToAbout(card_item.title)" *ngFor="let card_item of cards_items | filterBy: ['title'] : this.searchText" nz-col  [nzXs]="24" [nzSm]="12" [nzMd]="6" [nzLg]="6" [nzXl]="6" style="margin-bottom: 30px;">
         <nz-card nzHoverable style="width:240px" [nzCover]="coverTemplate">
