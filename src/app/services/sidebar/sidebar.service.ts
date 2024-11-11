@@ -31,4 +31,9 @@ export class SidebarService {
         this.sidebarItems.next(updatedItems);
     }
 
+    // 取得當前的側邊欄項目清單
+    getCurrentItems() {
+        return this.sidebarItems.getValue();
+    }
+
 }

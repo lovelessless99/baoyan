@@ -79,3 +79,30 @@ nz-content {
   background: #fff;
   height: 100%;
 }
+
+.menu-item-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%; /* 確保內容佔滿整個 menu item */
+}
+// .item-content {
+//   display: flex;
+//   justify-content: space-between;
+//   align-items: center;
+//   width: 100%; /* 讓內容區塊佔滿 li */
+//   gap: 5ch;
+// }
+
+// .close-button {
+//   background: none;
+//   border: none;
+//   color: white;
+//   cursor: pointer;
+//   padding: 0;
+//   font-size: 16px;
+// }
+
+// .close-button:hover {
+//   color: red; /* 按鈕 hover 顏色 */
+// }

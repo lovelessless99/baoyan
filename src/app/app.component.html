@@ -9,13 +9,17 @@
         </div>
 
         <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
-            <li nz-menu-item  [nzSelected]="selectedMenu === 'home'" (click)="gohome()" >
+            <li nz-menu-item [nzSelected]="selectedMenu === 'home'" (click)="gohome()">
                 <a>課程導覽</a>
             </li>
-            <li nz-submenu nzOpen nzTitle="佛法專題" nzIcon="dashboard">
+            <li nz-submenu nzOpen nzTitle="我的課程" nzIcon="dashboard">
                 <ul *ngFor="let item of (sidebarItems$ | async)">
-                    <li nz-menu-item   [nzSelected]="selectedMenu === item.name" (click)="onMenuItemClick(item.name)">
-                        <a>{{item.name}}</a>
+                    <li nz-menu-item nz-popconfirm [nzSelected]="selectedMenu === item.name"
+                        (click)="onMenuItemClick(item.name)">
+                        <div class="menu-item-content">
+                            <span>{{ item.name.length > 10 ? (item.name | slice:0:10) + '... ' : item.name }} </span>
+                            <span nz-icon nzType="close" nzTheme="outline" (click)="confirm(item.name)"></span>
+                        </div>
                     </li>
                 </ul>
             </li>
