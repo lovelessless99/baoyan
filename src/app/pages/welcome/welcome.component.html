@@ -1,27 +1,78 @@
-<nz-layout class="app-layout">
-
-    <nz-sider class="menu-sidebar right-sider" nzCollapsible nzWidth="256px" nzBreakpoint="md"
-        [(nzCollapsed)]="isCollapsed" [nzTrigger]="null">
-        <ul nz-menu nzTheme="light" nzMode="inline">
-            <li nz-submenu nzOpen nzTitle="大乘起信論" nzIcon="dashboard">
-                <ul>
-                    <li *ngFor="let video of videoList" (click)="onVideoClick(video.video_id)" nz-menu-item
-                        nzMatchRouter>
-                        {{ video.title }}
-                    </li>
-                </ul>
-            </li>
+<nz-layout nz-row class="app-layout">
+  <nz-content nz-col [nzSm]="24" [nzLg]="18">
+    <h2>{{ video_title }}</h2>
+    <youtube-player
+      [videoId]="video_id"
+      placeholderImageQuality="high"
+      [playerVars]="{ autoplay: 0, controls: 0 }"
+    />
+    <button nz-button nzType="default" (click)="playVideo()">Play</button>
+    <button nz-button nzType="default" (click)="pauseVideo()">Pause</button>
+    <nz-slider
+      [nzMin]="0"
+      [nzMax]="videoDuration"
+      [ngModel]="currentTime"
+      (ngModelChange)="onSliderChange($event)"
+    ></nz-slider>
+    <p>
+      Current Time: {{ currentTime | number : "1.0-0" }} /
+      {{ videoDuration | number : "1.0-0" }} seconds
+    </p>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente eligendi
+    quis aperiam quia facilis excepturi deserunt magni saepe, aliquam,
+    necessitatibus molestiae sed nam iusto suscipit non nostrum repellendus!
+    Beatae, necessitatibus. Lorem ipsum dolor sit amet consectetur adipisicing
+    elit. Sapiente eligendi quis aperiam quia facilis excepturi deserunt magni
+    saepe, aliquam, necessitatibus molestiae sed nam iusto suscipit non nostrum
+    repellendus! Beatae, necessitatibus. Lorem ipsum dolor sit amet consectetur
+    adipisicing elit. Sapiente eligendi quis aperiam quia facilis excepturi
+    deserunt magni saepe, aliquam, necessitatibus molestiae sed nam iusto
+    suscipit non nostrum repellendus! Beatae, necessitatibus. Lorem ipsum dolor
+    sit amet consectetur adipisicing elit. Sapiente eligendi quis aperiam quia
+    facilis excepturi deserunt magni saepe, aliquam, necessitatibus molestiae
+    sed nam iusto suscipit non nostrum repellendus! Beatae, necessitatibus.
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente eligendi
+    quis aperiam quia facilis excepturi deserunt magni saepe, aliquam,
+    necessitatibus molestiae sed nam iusto suscipit non nostrum repellendus!
+    Beatae, necessitatibus.
+  </nz-content>
+  <nz-content nz-col [nzSm]="24" [nzLg]="6">
+    <ul nz-menu nzTheme="light" nzMode="inline">
+      <li nz-submenu nzOpen nzTitle="大乘起信論" nzIcon="dashboard">
+        <ul>
+          <li
+            *ngFor="let video of videoList"
+            (click)="onVideoClick(video.video_id)"
+            nz-menu-item
+            nzMatchRouter
+          >
+            {{ video.title }}
+          </li>
         </ul>
-    </nz-sider>
-
-    <nz-content>
-        <h2>{{video_title}}</h2>
-        <youtube-player [videoId]="video_id" placeholderImageQuality="high"
-            [playerVars]="{ autoplay: 0, controls: 0 }" />
-        <button nz-button nzType="default" (click)="playVideo()">Play</button>
-        <button nz-button nzType="default" (click)="pauseVideo()">Pause</button>
-        <nz-slider [nzMin]="0" [nzMax]="videoDuration" [ngModel]="currentTime"
-            (ngModelChange)="onSliderChange($event)"></nz-slider>
-        <p>Current Time: {{ currentTime | number: '1.0-0' }} / {{ videoDuration | number: '1.0-0' }} seconds</p>
-    </nz-content>
+      </li>
+    </ul>
+  </nz-content>
+  <!-- <nz-sider
+    class="right-sider"
+    nzCollapsible
+    [(nzCollapsed)]="isCollapsed"
+    [nzTrigger]="null"
+    nz-col
+    [nzMd]="24"
+  >
+    <ul nz-menu nzTheme="light" nzMode="inline">
+      <li nz-submenu nzOpen nzTitle="大乘起信論" nzIcon="dashboard">
+        <ul>
+          <li
+            *ngFor="let video of videoList"
+            (click)="onVideoClick(video.video_id)"
+            nz-menu-item
+            nzMatchRouter
+          >
+            {{ video.title }}
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </nz-sider> -->
 </nz-layout>
